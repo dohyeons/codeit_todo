@@ -28,6 +28,10 @@ export default {
 				},
 				memoHeading: "#92400E",
 			},
+			screens: {
+				phone: "768px",
+				tablet: "1024px",
+			},
 		},
 	},
 	plugins: [],
