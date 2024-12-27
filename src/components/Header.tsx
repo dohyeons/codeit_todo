@@ -12,7 +12,7 @@ export default function Header() {
 		router.refresh();
 	};
 	return (
-		<header className="h-[60px] border border-b-primary-200">
+		<header className="h-[60px] border border-b-primary-200 bg-white">
 			<button className="flex h-full items-center" onClick={handleLogoClick}>
 				<Image alt="logo" src={logo} />
 				<Image className="hidden phone:block" alt="logo" src={logo_doit} />
