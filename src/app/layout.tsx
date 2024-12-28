@@ -38,7 +38,7 @@ export default function RootLayout({
 			<body className={myFont.className}>
 				<div className="min-h-screen flex flex-col bg-gray-50">
 					<Header />
-					<main>{children}</main>
+					<main className="container max-w-content">{children}</main>
 				</div>
 			</body>
 		</html>
