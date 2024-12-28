@@ -19,30 +19,32 @@
 		@apply max-w-content mx-auto px-[16px] tablet:px-[24px] desktop:px-0;
 	}
 }
+
+@layer utilities {
+	.text-large {
+		@apply text-[20px] font-bold;
+	}
+
+	.text-medium {
+		@apply text-[18px] font-bold;
+	}
+
+	.text-small-bold {
+		@apply text-[16px] font-extrabold;
+	}
+
+	.text-small-semi {
+		@apply text-[16px] font-bold;
+	}
+
+	.text-small-regular {
+		@apply text-[16px] font-normal;
+	}
+}
 body {
 	color: var(--foreground);
 	background: var(--background);
 }
 input:focus {
 	outline: none;
-}
-
-.text-large {
-	@apply text-[20px] font-bold;
-}
-
-.text-medium {
-	@apply text-[18px] font-bold;
-}
-
-.text-small-bold {
-	@apply text-[16px] font-extrabold;
-}
-
-.text-small-semi {
-	@apply text-[16px] font-bold;
-}
-
-.text-small-regular {
-	@apply text-[16px] font-normal;
 }
