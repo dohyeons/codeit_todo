@@ -3,7 +3,7 @@ import plus from "../../public/image/plus.svg";
 export default function Home() {
 	return (
 		<div className="container-main">
-			<div className="flex gap-[8px] tablet:gap-[16px] h-input-btn">
+			<div className="flex gap-[8px] tablet:gap-[16px] h-input-btn mb-[24px] tablet:mb-[40px]">
 				<input
 					className="w-full max-w-[1016px] rounded bg-primary-100 placeholder:text-primary-500 "
 					placeholder="할 일을 입력해주세요"
