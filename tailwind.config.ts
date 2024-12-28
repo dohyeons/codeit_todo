@@ -43,6 +43,9 @@ export default {
 					desktop: "0px",
 				},
 			},
+			borderRadius: {
+				DEFAULT: "24px",
+			},
 		},
 	},
 	plugins: [],
