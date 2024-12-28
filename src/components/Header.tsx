@@ -13,7 +13,7 @@ export default function Header() {
 	};
 	return (
 		<header className="border border-b-primary-200 bg-white">
-			<div className="max-w-content container h-[60px] flex items-center">
+			<div className="container-main h-[60px] flex items-center">
 				<button className="flex items-center" onClick={handleLogoClick}>
 					<Image alt="logo" src={logo} />
 					<Image className="hidden tablet:block" alt="logo" src={logo_doit} />
