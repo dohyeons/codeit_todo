@@ -1,5 +1,7 @@
 import Image from "next/image";
 import plus from "../../public/image/plus.svg";
+import List from "@/components/List";
+
 export default function Home() {
 	return (
 		<div className="container-main">
@@ -13,10 +15,7 @@ export default function Home() {
 					<span className="hidden tablet:block">추가하기</span>
 				</button>
 			</div>
-			<div className="grid grid-cols-1 gap-[48px] desktop:grid-cols-2 desktop:gap-[24px]">
-				<section>첫번째 콘텐츠</section>
-				<section>두번째 콘텐츠</section>
-			</div>
+			<List />
 		</div>
 	);
 }
