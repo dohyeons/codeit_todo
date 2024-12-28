@@ -35,6 +35,14 @@ export default {
 				tablet: "744px",
 				desktop: "1024px",
 			},
+			container: {
+				center: true,
+				padding: {
+					DEFAULT: "16px",
+					tablet: "24px",
+					desktop: "0px",
+				},
+			},
 		},
 	},
 	plugins: [],
