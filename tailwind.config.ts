@@ -28,9 +28,12 @@ export default {
 				},
 				memoHeading: "#92400E",
 			},
+			maxWidth: {
+				content: "1200px",
+			},
 			screens: {
-				phone: "768px",
-				tablet: "1024px",
+				tablet: "744px",
+				desktop: "1024px",
 			},
 		},
 	},
