@@ -13,9 +13,18 @@
 		--foreground: #ededed;
 	}
 }
+
+@layer components {
+	.container-main {
+		@apply max-w-content mx-auto px-[16px] tablet:px-[24px] desktop:px-0;
+	}
+}
 body {
 	color: var(--foreground);
 	background: var(--background);
+}
+input:focus {
+	outline: none;
 }
 
 .text-large {
