@@ -40,11 +40,14 @@ export default {
 				padding: {
 					DEFAULT: "16px",
 					tablet: "24px",
-					desktop: "0px",
+					desktop: "32px",
 				},
 			},
 			borderRadius: {
 				DEFAULT: "24px",
+			},
+			height: {
+				"input-btn": "56px",
 			},
 		},
 	},
