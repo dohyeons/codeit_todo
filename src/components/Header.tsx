@@ -12,7 +12,7 @@ export default function Header() {
 		router.refresh();
 	};
 	return (
-		<header className="border border-b-primary-200 bg-white">
+		<header className="border border-b-primary-200 bg-white mb-[16px] tablet:mb-[24px]">
 			<div className="container-main h-[60px] flex items-center">
 				<button className="flex items-center" onClick={handleLogoClick}>
 					<Image alt="logo" src={logo} />
