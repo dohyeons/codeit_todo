@@ -12,11 +12,13 @@ export default function Header() {
 		router.refresh();
 	};
 	return (
-		<header className="h-[60px] border border-b-primary-200 bg-white">
-			<button className="flex h-full items-center" onClick={handleLogoClick}>
-				<Image alt="logo" src={logo} />
-				<Image className="hidden phone:block" alt="logo" src={logo_doit} />
-			</button>
+		<header className="border border-b-primary-200 bg-white">
+			<div className="max-w-content mx-auto tablet:px-[24px] mobile:px-[16px] h-[60px] flex items-center">
+				<button className="flex items-center" onClick={handleLogoClick}>
+					<Image alt="logo" src={logo} />
+					<Image className="hidden tablet:block" alt="logo" src={logo_doit} />
+				</button>
+			</div>
 		</header>
 	);
 }
