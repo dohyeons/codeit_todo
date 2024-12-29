@@ -1,7 +1,13 @@
-export default function Page({
+import getTodoDetail from "@/api/getTodoDetail";
+import TodoDetail from "@/components/TodoDetail";
+
+export default async function Page({
 	params,
 }: {
-	params: Promise<{ slug: string }>;
+	params: Promise<{ itemId: string }>;
 }) {
-	return <div>안녕 여기는 상세페이지</div>;
+	const itemId = (await params).itemId;
+	const res = await getTodoDetail(Number(itemId));
+
+	return <TodoDetail initialTodoDetail={res} />;
 }
