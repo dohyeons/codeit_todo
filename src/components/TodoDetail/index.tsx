@@ -7,6 +7,8 @@ import Image from "next/image";
 import { useState } from "react";
 import img from "../../../public/image/img.svg";
 import plus_large from "../../../public/image/plus_large.svg";
+import check from "../../../public/image/check.svg";
+import x from "../../../public/image/x.svg";
 
 export default function TodoDetail({
 	initialTodoDetail,
@@ -24,7 +26,7 @@ export default function TodoDetail({
 			<div
 				className={`w-full h-[50px] rounded ${
 					todoDetail.isCompleted ? "bg-completed-light" : "bg-white"
-				}  flex items-center justify-center pl-[12px] gap-[16px] border-2 border-primary-900`}
+				}  flex items-center justify-center pl-[12px] gap-[16px] border-2 border-primary-900 mb-[17px] tablet:mb-[24px] desktop:mb-[29px]`}
 			>
 				<CheckBox
 					isDone={todoDetail.isCompleted ? true : false}
@@ -55,6 +57,16 @@ export default function TodoDetail({
 				>
 					메모
 				</article>
+			</div>
+			<div className="flex gap-[7px] tablet:gap-[16px] desktop:justify-end justify-center mt-[24px]">
+				<button className="w-[168px] h-[56px] flex items-center justify-center  gap-[4px] rounded bg-primary-200">
+					<Image alt="plus" src={check} />
+					<span>수정 완료</span>
+				</button>
+				<button className="w-[168px] text-small-semi text-white h-[56px] flex items-center justify-center  gap-[4px] rounded bg-btn-delete">
+					<Image alt="plus" src={x} />
+					<span>삭제하기</span>
+				</button>
 			</div>
 		</>
 	);
