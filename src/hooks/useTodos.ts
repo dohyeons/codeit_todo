@@ -1,9 +1,8 @@
 import getItems from "@/api/getItems";
+import { TodoListType } from "@/types";
 import { useState } from "react";
 
-export default function useTodos(
-	initialTodos: { id: number; isCompleted: boolean; name: string }[]
-) {
+export default function useTodos(initialTodos: TodoListType[]) {
 	const [todos, setTodos] = useState(initialTodos);
 	const [isLoading, setIsLoading] = useState(false);
 

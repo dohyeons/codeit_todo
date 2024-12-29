@@ -1,11 +1,12 @@
 import CheckBox from "@/components/List/TodoList/CheckBox";
 import EmptyList from "@/components/List/TodoList/EmptyList";
+import { TodoListType } from "@/types";
 
 export default function TodoList({
 	todos,
 	refetchTodos,
 }: {
-	todos: { isCompleted: boolean; name: string; id: number }[];
+	todos: TodoListType[];
 	refetchTodos: () => void;
 }) {
 	return (
