@@ -1,6 +1,7 @@
 import CheckBox from "@/components/List/TodoList/CheckBox";
 import EmptyList from "@/components/List/TodoList/EmptyList";
 import { TodoListType } from "@/types";
+import Link from "next/link";
 
 export default function TodoList({
 	todos,
@@ -25,7 +26,9 @@ export default function TodoList({
 								id={id}
 								refetchTodos={refetchTodos}
 							/>
-							<span className="truncate">{name}</span>
+							<Link href={`/items/${id}`} className="truncate">
+								{name}
+							</Link>
 						</li>
 					))}
 				</ul>
