@@ -1,5 +1,5 @@
 export default async function addTodo(name: string) {
-	const response = await fetch(
+	await fetch(
 		"https://assignment-todolist-api.vercel.app/api/ddhhss0603/items",
 		{
 			method: "POST",
@@ -8,7 +8,5 @@ export default async function addTodo(name: string) {
 			},
 			body: JSON.stringify({ name }),
 		}
-	).then(res => res.json());
-
-	return response;
+	);
 }
