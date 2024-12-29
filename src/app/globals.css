@@ -40,6 +40,19 @@
 	.text-small-regular {
 		@apply text-[16px] font-normal;
 	}
+
+	.scrollbar-thin::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	.scrollbar-thin::-webkit-scrollbar-thumb {
+		background-color: #fde68a;
+		border-radius: 3px;
+	}
+
+	.scrollbar-thin::-webkit-scrollbar-track {
+		background: transparent;
+	}
 }
 body {
 	color: var(--foreground);
