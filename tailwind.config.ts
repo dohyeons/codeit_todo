@@ -25,6 +25,7 @@ export default {
 				btn: {
 					delete: "#F43F5E",
 					complete: "#BEF264",
+					edit: "rgba(15, 23, 42, 0.5)",
 				},
 				memoHeading: "#92400E",
 			},
