@@ -16,7 +16,8 @@ export default function DetailImage({
 		if (
 			!file ||
 			file.type.split("/")[0] !== "image" ||
-			file.size > 5 * 1024 * 1024
+			file.size > 5 * 1024 * 1024 ||
+			!/^[a-zA-Z_.\-\s]+$/.test(file.name)
 		) {
 			return;
 		}
