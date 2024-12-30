@@ -22,6 +22,10 @@ export default function TodoDetail({
 		initialTodoDetail.imageUrl || ""
 	);
 	const [memoValue, setMemoValue] = useState(initialTodoDetail.memo || "");
+
+	const [memoName, setMemoName] = useState(initialTodoDetail.name);
+	const [isMemoNameChanging, setIsMemoNameChanging] = useState(false);
+
 	async function refetchTodoDetail() {
 		const res = await getTodoDetail(todoDetail.id);
 		setTodoDetail(res);
@@ -59,11 +63,22 @@ export default function TodoDetail({
 	function handleMemoChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
 		setMemoValue(e.target.value);
 	}
+
+	function handleMemoNameChange(e: React.ChangeEvent<HTMLInputElement>) {
+		setMemoName(e.target.value);
+	}
+
+	function handleMemoNameClick() {
+		setIsMemoNameChanging(prev => !prev);
+	}
 	return (
 		<>
 			<DetailHeader
 				todoDetail={todoDetail}
 				refetchTodoDetail={refetchTodoDetail}
+				handleMemoNameChange={handleMemoNameChange}
+				onMemoNameClick={handleMemoNameClick}
+				isMemoNameChanging={isMemoNameChanging}
 			/>
 			<div className="flex flex-col desktop:flex-row gap-[15px] tablet:gap-[24px] ">
 				<article
