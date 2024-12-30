@@ -10,6 +10,7 @@ import check from "../../../public/image/check.svg";
 import x from "../../../public/image/x.svg";
 import memo_heading from "../../../public/image/memo_heading.svg";
 import DetailHeader from "@/components/TodoDetail/DetailHeader";
+import edit from "../../../public/image/edit.svg";
 
 export default function TodoDetail({
 	initialTodoDetail,
@@ -17,10 +18,40 @@ export default function TodoDetail({
 	initialTodoDetail: TodoListDetailType;
 }) {
 	const [todoDetail, setTodoDetail] = useState(initialTodoDetail);
+	const [imageUrl, setImageUrl] = useState<string | null>(null);
 
 	async function refetchTodoDetail() {
 		const res = await getTodoDetail(todoDetail.id);
 		setTodoDetail(res);
+	}
+
+	function fileInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+		const file = e.target.files?.[0];
+		if (!file) return;
+		// 일단 file이 0이 아니라면 걍 return.
+		if (e.target.files && e.target.files.length > 1) {
+			return;
+		}
+		if (file.type.split("/")[0] !== "image") {
+			return;
+		}
+		if (file.size > 5 * 1024 * 1024) {
+			return;
+		}
+
+		if (!/^[a-zA-Z0-9_.-]+$/.test(file.name)) {
+			console.log(file.name);
+			return;
+		}
+
+		const reader = new FileReader();
+		reader.onload = data => {
+			if (typeof data.target?.result === "string") {
+				console.log(data.target?.result);
+				setImageUrl(data.target?.result);
+			}
+		};
+		reader.readAsDataURL(file);
 	}
 	return (
 		<>
@@ -29,19 +60,31 @@ export default function TodoDetail({
 				refetchTodoDetail={refetchTodoDetail}
 			/>
 			<div className="flex flex-col desktop:flex-row gap-[15px] tablet:gap-[24px] ">
-				<article className="flex  items-center justify-center relative border-2 border-dashed border-primary-300 w-full desktop:max-w-[384px] h-[311px] bg-slate-50 rounded">
-					<Image src={img} alt="img" />
-					<div className="rounded-full cursor-pointer bottom-[16px] right-[16px] bg-primary-200 absolute size-[64px] flex justify-center items-center">
-						<label htmlFor="file-input">
-							<Image src={plus_large} alt="plus" className="cursor-pointer" />
-						</label>
-						<input
-							type="file"
-							accept="image/*"
-							className="hidden"
-							id="file-input"
-						/>
-					</div>
+				<article
+					style={{
+						backgroundImage: imageUrl ? `url(${imageUrl})` : "none",
+					}}
+					className={`flex bg-center bg-cover  items-center justify-center relative border-2 border-dashed border-primary-300 w-full desktop:max-w-[384px] h-[311px] bg-slate-50 rounded`}
+				>
+					{!imageUrl && <Image src={img} alt="img" />}
+					<label htmlFor="file-input">
+						<div
+							className={`rounded-full cursor-pointer bottom-[16px] right-[16px] ${
+								imageUrl
+									? "bg-btn-edit border-2 border-primary-900"
+									: "bg-primary-200"
+							} absolute size-[64px] flex justify-center items-center`}
+						>
+							<Image src={imageUrl ? edit : plus_large} alt="edit" />
+						</div>
+					</label>
+					<input
+						type="file"
+						accept="image/*"
+						className="hidden"
+						id="file-input"
+						onChange={fileInputChange}
+					/>
 				</article>
 				<article
 					className={`desktop:max-x-[588px] w-full h-[311px] rounded  bg-[url('/image/memo.svg')] flex flex-col py-[24px] px-[16px] items-center gap-[16px]`}
