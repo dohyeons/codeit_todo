@@ -18,8 +18,10 @@ export default function TodoDetail({
 	initialTodoDetail: TodoListDetailType;
 }) {
 	const [todoDetail, setTodoDetail] = useState(initialTodoDetail);
-	const [imageUrl, setImageUrl] = useState<string | null>(null);
-
+	const [memoImage, setMemoImage] = useState<string>(
+		initialTodoDetail.imageUrl || ""
+	);
+	const [memoValue, setMemoValue] = useState(initialTodoDetail.memo || "");
 	async function refetchTodoDetail() {
 		const res = await getTodoDetail(todoDetail.id);
 		setTodoDetail(res);
@@ -48,10 +50,14 @@ export default function TodoDetail({
 		reader.onload = data => {
 			if (typeof data.target?.result === "string") {
 				console.log(data.target?.result);
-				setImageUrl(data.target?.result);
+				setMemoImage(data.target?.result);
 			}
 		};
 		reader.readAsDataURL(file);
+	}
+
+	function handleMemoChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+		setMemoValue(e.target.value);
 	}
 	return (
 		<>
@@ -62,20 +68,20 @@ export default function TodoDetail({
 			<div className="flex flex-col desktop:flex-row gap-[15px] tablet:gap-[24px] ">
 				<article
 					style={{
-						backgroundImage: imageUrl ? `url(${imageUrl})` : "none",
+						backgroundImage: memoImage ? `url(${memoImage})` : "none",
 					}}
 					className={`flex bg-center bg-cover  items-center justify-center relative border-2 border-dashed border-primary-300 w-full desktop:max-w-[384px] h-[311px] bg-slate-50 rounded`}
 				>
-					{!imageUrl && <Image src={img} alt="img" />}
+					{!memoImage && <Image src={img} alt="img" />}
 					<label htmlFor="file-input">
 						<div
 							className={`rounded-full cursor-pointer bottom-[16px] right-[16px] ${
-								imageUrl
+								memoImage
 									? "bg-btn-edit border-2 border-primary-900"
 									: "bg-primary-200"
 							} absolute size-[64px] flex justify-center items-center`}
 						>
-							<Image src={imageUrl ? edit : plus_large} alt="edit" />
+							<Image src={memoImage ? edit : plus_large} alt="edit" />
 						</div>
 					</label>
 					<input
@@ -90,7 +96,11 @@ export default function TodoDetail({
 					className={`desktop:max-x-[588px] w-full h-[311px] rounded  bg-[url('/image/memo.svg')] flex flex-col py-[24px] px-[16px] items-center gap-[16px]`}
 				>
 					<Image src={memo_heading} alt="memo_heading" className="mb-[16px]" />
-					<textarea className="w-full h-[311px] outline-none bg-transparent overflow-y:auto scrollbar-thin resize-none scrollbar-thin scrollbar-thumb-amber-200" />
+					<textarea
+						value={memoValue}
+						onChange={handleMemoChange}
+						className="w-full h-[311px] outline-none bg-transparent overflow-y:auto scrollbar-thin resize-none scrollbar-thin scrollbar-thumb-amber-200"
+					/>
 				</article>
 			</div>
 			<div className="flex gap-[7px] tablet:gap-[16px] desktop:justify-end justify-center mt-[24px]">
