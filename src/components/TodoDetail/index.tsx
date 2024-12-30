@@ -1,7 +1,6 @@
 "use client";
 
 import getTodoDetail from "@/api/getTodoDetail";
-import CheckBox from "@/components/List/TodoList/CheckBox";
 import { TodoListDetailType } from "@/types";
 import Image from "next/image";
 import { useState } from "react";
@@ -10,6 +9,7 @@ import plus_large from "../../../public/image/plus_large.svg";
 import check from "../../../public/image/check.svg";
 import x from "../../../public/image/x.svg";
 import memo_heading from "../../../public/image/memo_heading.svg";
+import DetailHeader from "@/components/TodoDetail/DetailHeader";
 
 export default function TodoDetail({
 	initialTodoDetail,
@@ -24,20 +24,10 @@ export default function TodoDetail({
 	}
 	return (
 		<>
-			<div
-				className={`w-full h-[50px] rounded ${
-					todoDetail.isCompleted ? "bg-completed-light" : "bg-white"
-				}  flex items-center justify-center pl-[12px] gap-[16px] border-2 border-primary-900 mb-[17px] tablet:mb-[24px] desktop:mb-[29px]`}
-			>
-				<CheckBox
-					isDone={todoDetail.isCompleted ? true : false}
-					id={todoDetail.id}
-					refetchTodos={refetchTodoDetail}
-				/>
-				<h1 className="truncate underline decoration-1 underline-offset-2 text-large">
-					{todoDetail.name}
-				</h1>
-			</div>
+			<DetailHeader
+				todoDetail={todoDetail}
+				refetchTodoDetail={refetchTodoDetail}
+			/>
 			<div className="flex flex-col desktop:flex-row gap-[15px] tablet:gap-[24px] ">
 				<article className="flex  items-center justify-center relative border-2 border-dashed border-primary-300 w-full desktop:max-w-[384px] h-[311px] bg-slate-50 rounded">
 					<Image src={img} alt="img" />
