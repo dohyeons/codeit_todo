@@ -32,7 +32,7 @@ export default function InputForm({ onAdd }: { onAdd: () => void }) {
 				onChange={handleInputChange}
 				onKeyDown={handleKeyDown}
 			/>
-			<AddButton onClick={handleSubmit} />
+			<AddButton onClick={handleSubmit} value={inputValue} />
 		</div>
 	);
 }
