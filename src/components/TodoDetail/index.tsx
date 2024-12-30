@@ -38,7 +38,7 @@ export default function TodoDetail({
 					{todoDetail.name}
 				</h1>
 			</div>
-			<div className="flex flex-col desktop:flex-row gap-[15px] tablet:gap-[24px] border border-black ">
+			<div className="flex flex-col desktop:flex-row gap-[15px] tablet:gap-[24px] ">
 				<article className="flex  items-center justify-center relative border-2 border-dashed border-primary-300 w-full desktop:max-w-[384px] h-[311px] bg-slate-50 rounded">
 					<Image src={img} alt="img" />
 					<div className="rounded-full cursor-pointer bottom-[16px] right-[16px] bg-primary-200 absolute size-[64px] flex justify-center items-center">
@@ -54,7 +54,7 @@ export default function TodoDetail({
 					</div>
 				</article>
 				<article
-					className={`border border-red-300 desktop:max-x-[588px] w-full h-[311px] rounded  bg-[url('/image/memo.svg')] flex flex-col py-[24px] px-[16px] items-center gap-[16px]`}
+					className={`desktop:max-x-[588px] w-full h-[311px] rounded  bg-[url('/image/memo.svg')] flex flex-col py-[24px] px-[16px] items-center gap-[16px]`}
 				>
 					<Image src={memo_heading} alt="memo_heading" className="mb-[16px]" />
 					<textarea className="w-full h-[311px] outline-none bg-transparent overflow-y:auto scrollbar-thin resize-none scrollbar-thin scrollbar-thumb-amber-200" />
