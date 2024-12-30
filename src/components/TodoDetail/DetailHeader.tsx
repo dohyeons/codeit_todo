@@ -5,14 +5,10 @@ export default function DetailHeader({
 	todoDetail,
 	refetchTodoDetail,
 	handleMemoNameChange,
-	onMemoNameClick,
-	isMemoNameChanging,
 }: {
-	todoDetail: TodoListDetailType;
+	todoDetail: Omit<TodoListDetailType, "tenantId">;
 	refetchTodoDetail: () => void;
 	handleMemoNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	onMemoNameClick: () => void;
-	isMemoNameChanging: boolean;
 }) {
 	return (
 		<div
@@ -25,22 +21,12 @@ export default function DetailHeader({
 				id={todoDetail.id}
 				refetchTodos={refetchTodoDetail}
 			/>
-			{isMemoNameChanging ? (
-				<input
-					className="text-large bg-transparent underline decoration-1 underline-offset-2"
-					type="text"
-					value={todoDetail.name}
-					onChange={handleMemoNameChange}
-					onBlur={onMemoNameClick}
-				/>
-			) : (
-				<h1
-					className="truncate underline decoration-1 underline-offset-2 text-large cursor-pointer"
-					onClick={onMemoNameClick}
-				>
-					{todoDetail.name}
-				</h1>
-			)}
+			<input
+				className="text-large bg-transparent underline decoration-1 underline-offset-2"
+				type="text"
+				value={todoDetail.name}
+				onChange={handleMemoNameChange}
+			/>
 		</div>
 	);
 }
