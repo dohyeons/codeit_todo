@@ -24,7 +24,7 @@ export default function TodoList({
 							<CheckBox
 								isDone={isCompleted ? true : false}
 								id={id}
-								refetchTodos={refetchTodos}
+								customFunction={refetchTodos}
 							/>
 							<Link href={`/items/${id}`} className="truncate">
 								{name}

@@ -8,17 +8,21 @@ import toggleComplete from "@/api/toggleComplete";
 export default function CheckBox({
 	isDone,
 	id,
-	refetchTodos,
+	activeToggle = true,
+	customFunction,
 }: {
 	isDone: boolean;
 	id: number;
-	refetchTodos: () => void;
+	activeToggle?: boolean;
+	customFunction: () => void;
 }) {
 	return (
 		<button
 			onClick={async () => {
-				await toggleComplete(isDone, id);
-				refetchTodos();
+				if (activeToggle) {
+					await toggleComplete(isDone, id);
+				}
+				customFunction();
 			}}
 		>
 			<Image src={isDone ? checkbox_done : checkbox_todo} alt="checkbox_done" />

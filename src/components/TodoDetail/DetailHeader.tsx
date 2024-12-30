@@ -3,11 +3,11 @@ import { TodoListDetailType } from "@/types";
 
 export default function DetailHeader({
 	todoDetail,
-	refetchTodoDetail,
+	changeCompleteStatus,
 	handleMemoNameChange,
 }: {
 	todoDetail: Omit<TodoListDetailType, "tenantId">;
-	refetchTodoDetail: () => void;
+	changeCompleteStatus: () => void;
 	handleMemoNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
 	return (
@@ -19,7 +19,8 @@ export default function DetailHeader({
 			<CheckBox
 				isDone={todoDetail.isCompleted ? true : false}
 				id={todoDetail.id}
-				refetchTodos={refetchTodoDetail}
+				customFunction={changeCompleteStatus}
+				activeToggle={false}
 			/>
 			<input
 				className="text-large bg-transparent underline decoration-1 underline-offset-2"
