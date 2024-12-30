@@ -3,17 +3,14 @@
 import { TodoListDetailType } from "@/types";
 import NextImage from "next/image";
 import { useEffect, useState } from "react";
-import img from "../../../public/image/img.svg";
-import plus_large from "../../../public/image/plus_large.svg";
 import check from "../../../public/image/check.svg";
 import x from "../../../public/image/x.svg";
-import memo_heading from "../../../public/image/memo_heading.svg";
 import DetailHeader from "@/components/TodoDetail/DetailHeader";
-import edit from "../../../public/image/edit.svg";
 import deleteTodo from "@/api/deleteTodo";
 import { useRouter } from "next/navigation";
 import updateDetail from "@/api/updateDetail";
 import FileResizer from "react-image-file-resizer";
+import DetailContent from "@/components/TodoDetail/DetailContent";
 
 export default function TodoDetail({
 	initialTodoDetail: { tenantId, ...res },
@@ -90,7 +87,10 @@ export default function TodoDetail({
 	function changeCompleteStatus() {
 		setTodoDetail({ ...todoDetail, isCompleted: !todoDetail.isCompleted });
 	}
-	console.log(todoDetail);
+	function handleImageChange(uri: string) {
+		setTodoDetail({ ...todoDetail, imageUrl: uri });
+	}
+
 	return (
 		<>
 			<DetailHeader
@@ -98,55 +98,12 @@ export default function TodoDetail({
 				changeCompleteStatus={changeCompleteStatus}
 				handleMemoNameChange={handleMemoNameChange}
 			/>
-			<div className="flex flex-col desktop:flex-row gap-[15px] tablet:gap-[24px] ">
-				<article
-					style={{
-						backgroundImage: todoDetail.imageUrl
-							? `url(${todoDetail.imageUrl})`
-							: "none",
-					}}
-					className={`flex bg-center bg-cover ${
-						!todoDetail.imageUrl && "border-2 border-dashed border-primary-300"
-					}  items-center justify-center relative  w-full desktop:max-w-[384px] h-[311px] bg-slate-50 rounded`}
-				>
-					{!todoDetail.imageUrl && <NextImage src={img} alt="img" />}
-					<label htmlFor="file-input">
-						<div
-							className={`rounded-full cursor-pointer bottom-[16px] right-[16px] ${
-								todoDetail.imageUrl
-									? "bg-btn-edit border-2 border-primary-900"
-									: "bg-primary-200"
-							} absolute size-[64px] flex justify-center items-center`}
-						>
-							<NextImage
-								src={todoDetail.imageUrl ? edit : plus_large}
-								alt="edit"
-							/>
-						</div>
-					</label>
-					<input
-						type="file"
-						accept="image/*"
-						className="hidden"
-						id="file-input"
-						onChange={fileInputChange}
-					/>
-				</article>
-				<article
-					className={`desktop:max-x-[588px] w-full h-[311px] rounded  bg-[url('/image/memo.svg')] flex flex-col py-[24px] px-[16px] items-center gap-[16px]`}
-				>
-					<NextImage
-						src={memo_heading}
-						alt="memo_heading"
-						className="mb-[16px]"
-					/>
-					<textarea
-						value={todoDetail.memo || ""}
-						onChange={handleMemoChange}
-						className="w-full h-[311px] outline-none bg-transparent overflow-y:auto scrollbar-thin resize-none scrollbar-thin scrollbar-thumb-amber-200"
-					/>
-				</article>
-			</div>
+			<DetailContent
+				imageUrl={todoDetail.imageUrl}
+				memo={todoDetail.memo}
+				onMemoChange={handleMemoChange}
+				onImageChange={handleImageChange}
+			/>
 			<div className="flex gap-[7px] tablet:gap-[16px] desktop:justify-end justify-center mt-[24px]">
 				<button
 					onClick={onClickCompleteButton}
