@@ -1,13 +1,21 @@
 import getItems from "@/api/getItems";
 import { TodoListType } from "@/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function useTodos(initialTodos: TodoListType[]) {
-	const [todos, setTodos] = useState(initialTodos);
-	const [isLoading, setIsLoading] = useState(false);
+export default function useTodos() {
+	const [todos, setTodos] = useState<TodoListType[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		async function fetchInitialTodos() {
+			const initialTodos = await getItems();
+			setTodos(initialTodos);
+			setIsLoading(false);
+		}
+		fetchInitialTodos();
+	}, []);
 
 	const fetchTodos = async () => {
-		setIsLoading(true);
 		const data = await getItems();
 		setTodos(data);
 		setIsLoading(false);

@@ -6,17 +6,12 @@ import done from "../../../public/image/done.svg";
 import TodoList from "@/components/List/TodoList";
 import useTodos from "@/hooks/useTodos";
 import InputForm from "@/components/InputForm";
-import { TodoListType } from "@/types";
 
-export default function List({
-	initialTodos,
-}: {
-	initialTodos: TodoListType[];
-}) {
-	const { todos, isLoading, fetchTodos } = useTodos(initialTodos);
+export default function List() {
+	const { todos, isLoading, fetchTodos } = useTodos();
 
-	const incompleteTodos = todos.filter(todo => !todo.isCompleted);
-	const completedTodos = todos.filter(todo => todo.isCompleted);
+	const incompleteTodos = todos?.filter(todo => !todo.isCompleted);
+	const completedTodos = todos?.filter(todo => todo.isCompleted);
 
 	return (
 		<>

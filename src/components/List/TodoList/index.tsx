@@ -7,12 +7,12 @@ export default function TodoList({
 	todos,
 	refetchTodos,
 }: {
-	todos: TodoListType[];
+	todos: TodoListType[] | undefined;
 	refetchTodos: () => void;
 }) {
 	return (
 		<>
-			{todos.length ? (
+			{todos?.length ? (
 				<ul className="flex flex-col gap-[16px] mt-[16px]">
 					{todos.map(({ isCompleted, name, id }) => (
 						<li
