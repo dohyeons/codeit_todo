@@ -1,7 +1,6 @@
 "use client";
 
 import { TodoListDetailType } from "@/types";
-import { useEffect, useState } from "react";
 import DetailHeader from "@/components/TodoDetail/DetailHeader";
 import deleteTodo from "@/api/deleteTodo";
 import { useRouter } from "next/navigation";
