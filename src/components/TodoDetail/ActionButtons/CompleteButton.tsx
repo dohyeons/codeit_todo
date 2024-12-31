@@ -14,7 +14,7 @@ export default function CompleteButton({
 			disabled={isCompleteDisabled}
 			className={`w-[168px] h-[56px] flex items-center ${
 				isCompleteDisabled ? "bg-primary-200" : "bg-btn-complete"
-			} justify-center gap-[4px] rounded`}
+			} justify-center gap-[4px] rounded shadow-inside`}
 		>
 			<Image alt="plus" src={check} />
 			<span>수정 완료</span>
