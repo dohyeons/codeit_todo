@@ -1,8 +1,8 @@
-import FileResizer from "react-image-file-resizer";
 import Image from "next/image";
 import img from "../../../../public/image/img.svg";
 import edit from "../../../../public/image/edit.svg";
 import plus_large from "../../../../public/image/plus_large.svg";
+import postImage from "@/api/postImage";
 
 export default function DetailImage({
 	imageUrl,
@@ -11,7 +11,7 @@ export default function DetailImage({
 	imageUrl: string | null;
 	onImageChange: (uri: string) => void;
 }) {
-	function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+	async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
 		const file = e.target.files?.[0];
 		if (
 			!file ||
@@ -21,21 +21,9 @@ export default function DetailImage({
 		) {
 			return;
 		}
-
-		FileResizer.imageFileResizer(
-			file,
-			800,
-			800,
-			"JPEG",
-			60,
-			0,
-			uri => {
-				onImageChange(uri as string);
-			},
-			"base64"
-		);
+		const res = await postImage(file);
+		onImageChange(res.url);
 	}
-
 	return (
 		<article
 			style={{
@@ -63,6 +51,7 @@ export default function DetailImage({
 				className="hidden"
 				id="file-input"
 				onChange={handleFileChange}
+				formEncType="multipart/form-data"
 			/>
 		</article>
 	);
