@@ -50,6 +50,12 @@ export default {
 			height: {
 				"input-btn": "56px",
 			},
+			boxShadow: {
+				DEFAULT: "0 0 0 2px #0F172A inset;",
+			},
+			dropShadow: {
+				DEFAULT: "4px 4px 0px #0F172A",
+			},
 		},
 	},
 	plugins: [],

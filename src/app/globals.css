@@ -41,6 +41,10 @@
 		@apply text-[16px] font-normal;
 	}
 
+	.shadow-inside {
+		@apply shadow drop-shadow;
+	}
+
 	.scrollbar-thin::-webkit-scrollbar {
 		width: 4px;
 	}
