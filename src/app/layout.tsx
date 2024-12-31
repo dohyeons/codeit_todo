@@ -36,9 +36,9 @@ export default function RootLayout({
 		<html lang="en">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			<body className={myFont.className}>
-				<div className="min-h-screen flex flex-col bg-gray-50">
+				<div className="flex relative flex-col bg-gray-50">
 					<Header />
-					<main>{children}</main>
+					{children}
 				</div>
 			</body>
 		</html>

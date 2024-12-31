@@ -16,7 +16,7 @@
 
 @layer components {
 	.container-main {
-		@apply max-w-content mx-auto px-[16px] tablet:px-[24px] desktop:px-0;
+		@apply max-w-content mx-auto  tablet:px-[24px] desktop:px-0;
 	}
 }
 

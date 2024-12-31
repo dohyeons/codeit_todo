@@ -5,8 +5,8 @@ export default async function Home() {
 	const initialTodos = await getItems();
 
 	return (
-		<div className="container-main">
+		<main className="container-main w-full min-h-screen pt-[76px] tablet:pt-[84px] px-[16px]">
 			<List initialTodos={initialTodos} />
-		</div>
+		</main>
 	);
 }
