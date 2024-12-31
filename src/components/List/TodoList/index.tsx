@@ -26,7 +26,12 @@ export default function TodoList({
 								id={id}
 								customFunction={refetchTodos}
 							/>
-							<Link href={`/items/${id}`} className="truncate">
+							<Link
+								href={`/items/${id}`}
+								className={`truncate ${
+									isCompleted && "line-through text-primary-800"
+								} `}
+							>
 								{name}
 							</Link>
 						</li>
