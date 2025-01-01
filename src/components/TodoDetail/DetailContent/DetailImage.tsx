@@ -16,13 +16,20 @@ export default function DetailImage({
 	async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
 		// 이미지 파일을 가져옴.
 		const file = e.target.files?.[0];
+		if (!file) return;
+		if (file.size > 5 * 1024 * 1024) {
+			window.alert("5MB 이하의 파일만 업로드 가능합니다.");
+			return;
+		}
+		if (!/^[a-zA-Z_.\-\s]+$/.test(file.name)) {
+			window.alert("파일명은 영어만 사용 가능합니다.");
+			return;
+		}
 		if (
-			!file || // 파일이 존재하지 않고
-			file.type.split("/")[0] !== "image" || // 형식이 이미지가 아니고
-			file.size > 5 * 1024 * 1024 || // 사이즈가 5mb를 초과하고
-			!/^[a-zA-Z_.\-\s]+$/.test(file.name) // 이름에 영어가 아닌 다른 문자가 있으면
+			file.type.split("/")[0] !== "image" ||
+			file.name.split(".").pop() === "svg"
 		) {
-			// 함수를 빠져나감
+			window.alert("이미지 파일만 업로드 가능합니다.");
 			return;
 		}
 		// 위의 조건을 통과했을 경우
