@@ -16,15 +16,15 @@ export default function CheckBox({
 	activeToggle?: boolean;
 	customFunction: () => void;
 }) {
+	async function handleCheckBoxClick() {
+		if (activeToggle) {
+			await toggleComplete(isDone, id);
+		}
+		customFunction();
+	}
+
 	return (
-		<button
-			onClick={async () => {
-				if (activeToggle) {
-					await toggleComplete(isDone, id);
-				}
-				customFunction();
-			}}
-		>
+		<button onClick={handleCheckBoxClick}>
 			<Image src={isDone ? checkbox_done : checkbox_todo} alt="checkbox_done" />
 		</button>
 	);
