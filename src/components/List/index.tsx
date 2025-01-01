@@ -1,49 +1,42 @@
 "use client";
 
-import Image from "next/image";
-import todo from "../../../public/image/todo.svg";
-import done from "../../../public/image/done.svg";
-import TodoList from "@/components/List/TodoList";
 import InputForm from "@/components/InputForm";
 import useTodos from "@/hooks/useTodos";
-import Loading from "@/components/List/TodoList/Loading";
+import TodoSection from "@/components/List/TodoList/TodoSection";
 
+// 할 일 목록을 렌더링하는 컴포넌트
 export default function List() {
+	// todolist를 페칭하는 훅
 	const { todos, isLoading, fetchTodos, ref, ref2, isError } = useTodos();
 
+	// 할 일 목록
 	const incompleteTodos = todos?.filter(todo => !todo.isCompleted);
+	// 완료 목록
 	const completedTodos = todos?.filter(todo => todo.isCompleted);
 
 	return (
 		<>
+			{/* 새 todo를 만드는 컴포넌트 */}
 			<InputForm onAdd={fetchTodos} />
 			<div className="grid grid-cols-1 gap-[48px] desktop:grid-cols-2 desktop:gap-[24px]">
-				<section>
-					<Image src={todo} alt={"todo"} />
-					{isError ? (
-						<span>데이터를 불러오는 중 문제가 발생했습니다.</span>
-					) : isLoading ? (
-						<Loading />
-					) : (
-						<TodoList todos={incompleteTodos} refetchTodos={fetchTodos} />
-					)}
-					<div ref={ref} className="w-full h-[60px]"></div>
-				</section>
-				<section>
-					<Image src={done} alt={"done"} />
-					{isError ? (
-						<span>데이터를 불러오는 중 문제가 발생했습니다.</span>
-					) : isLoading ? (
-						<Loading />
-					) : (
-						<TodoList
-							todos={completedTodos}
-							refetchTodos={fetchTodos}
-							isCompleted
-						/>
-					)}
-					<div ref={ref2} className="w-full h-[60px]"></div>
-				</section>
+				{/* 할 일 목록을 렌더링하는 컴포넌트 */}
+				<TodoSection
+					status="todo"
+					todos={incompleteTodos}
+					isError={isError}
+					isLoading={isLoading}
+					fetchTodos={fetchTodos}
+					ref={ref}
+				/>
+				{/* 완료 목록을 렌더링하는 컴포넌트 */}
+				<TodoSection
+					status="done"
+					todos={completedTodos}
+					isError={isError}
+					isLoading={isLoading}
+					fetchTodos={fetchTodos}
+					ref={ref2}
+				/>
 			</div>
 		</>
 	);

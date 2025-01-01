@@ -1,3 +1,4 @@
+// 상세사항 페이지에 적용될 공통 레이아웃 컴포넌트
 export default function ItemsLayout({
 	children,
 }: {

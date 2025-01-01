@@ -1,6 +1,7 @@
 import Image from "next/image";
 import x from "../../../../public/image/x.svg";
 
+// 삭제 버튼
 export default function DeleteButton({ onDelete }: { onDelete: () => void }) {
 	return (
 		<button

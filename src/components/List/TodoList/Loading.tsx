@@ -1,3 +1,4 @@
+// todolist를 로딩중일 때 렌더링하는 컴포넌트
 export default function Loading() {
 	return (
 		<div className="w-full mt-[16px]">

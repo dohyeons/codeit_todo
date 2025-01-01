@@ -1,3 +1,4 @@
+// 새로운 todo의 제목을 입력하는 인풋
 export default function AddInput({
 	value,
 	onChange,

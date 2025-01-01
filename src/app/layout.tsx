@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 
+// 폰트 적용
 const myFont = localFont({
 	src: [
 		{
@@ -22,6 +23,7 @@ const myFont = localFont({
 		},
 	],
 });
+// 페이지 제목 및 설명 설정
 export const metadata: Metadata = {
 	title: "codeit_todo",
 	description: "코드잇 투두리스트",
