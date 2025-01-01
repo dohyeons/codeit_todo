@@ -12,6 +12,7 @@ export default function AddButton({
 	return (
 		<button
 			onClick={onClick}
+			disabled={value.length ? false : true}
 			className={`min-w-[56px] flex items-center justify-center shadow-inside  tablet:min-w-[168px] gap-[4px] rounded ${
 				value ? "bg-completed text-white" : "bg-primary-200"
 			}`}

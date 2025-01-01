@@ -15,9 +15,13 @@ export default function InputForm({ onAdd }: { onAdd: () => void }) {
 	async function handleSubmit() {
 		if (!inputValue.trim()) return;
 
-		await addTodo(inputValue);
-		setInputValue("");
-		onAdd();
+		try {
+			await addTodo(inputValue);
+			setInputValue("");
+			onAdd();
+		} catch {
+			window.alert("요청에 실패했습니다.");
+		}
 	}
 
 	function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
