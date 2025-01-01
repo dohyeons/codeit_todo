@@ -11,7 +11,7 @@ export default function ActionButtons({
 	isCompleteDisabled: boolean;
 }) {
 	return (
-		<div className="flex gap-[7px] tablet:gap-[16px] desktop:justify-end justify-center mt-[24px]">
+		<div className="flex gap-[7px] tablet:gap-[16px] desktop:justify-end justify-center mt-[24px] mb-[139px]">
 			<CompleteButton
 				onComplete={onComplete}
 				isCompleteDisabled={isCompleteDisabled}
