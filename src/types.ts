@@ -1,3 +1,4 @@
+// todo리스트 목록의 타입
 type TodoListDetailType = {
 	isCompleted: boolean;
 	imageUrl: string | null;
@@ -7,6 +8,8 @@ type TodoListDetailType = {
 	id: number;
 };
 
+// 투두리스트 중 항목 렌더링을 위한 타입
 type TodoListType = Pick<TodoListDetailType, "name" | "id" | "isCompleted">;
 
-export type { TodoListType, TodoListDetailType };
+type TodoDetailType = Omit<TodoListDetailType, "tenantId">;
+export type { TodoListType, TodoListDetailType, TodoDetailType };
