@@ -33,8 +33,12 @@ export default function TodoDetail({
 		}
 	}
 	async function onClickCompleteButton() {
-		await updateDetail(todoDetail.id, todoDetail);
-		router.push("/");
+		try {
+			await updateDetail(todoDetail.id, todoDetail);
+			router.push("/");
+		} catch {
+			window.alert("수정 요청이 실패했습니다.");
+		}
 	}
 
 	return (
