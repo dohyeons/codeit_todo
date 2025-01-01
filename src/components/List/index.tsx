@@ -6,6 +6,7 @@ import done from "../../../public/image/done.svg";
 import TodoList from "@/components/List/TodoList";
 import InputForm from "@/components/InputForm";
 import useTodos from "@/hooks/useTodos";
+import Loading from "@/components/List/TodoList/Loading";
 
 export default function List() {
 	const { todos, isLoading, fetchTodos, ref, ref2 } = useTodos();
@@ -20,9 +21,7 @@ export default function List() {
 				<section>
 					<Image src={todo} alt={"todo"} />
 					{isLoading ? (
-						<div className="w-full mt-[16px]">
-							<span>데이터를 불러오고 있습니다.</span>
-						</div>
+						<Loading />
 					) : (
 						<TodoList todos={incompleteTodos} refetchTodos={fetchTodos} />
 					)}
@@ -31,9 +30,7 @@ export default function List() {
 				<section>
 					<Image src={done} alt={"done"} />
 					{isLoading ? (
-						<div className="w-full mt-[16px]">
-							<span>데이터를 불러오고 있습니다.</span>
-						</div>
+						<Loading />
 					) : (
 						<TodoList
 							todos={completedTodos}
