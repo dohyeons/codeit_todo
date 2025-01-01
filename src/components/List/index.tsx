@@ -9,7 +9,7 @@ import useTodos from "@/hooks/useTodos";
 import Loading from "@/components/List/TodoList/Loading";
 
 export default function List() {
-	const { todos, isLoading, fetchTodos, ref, ref2 } = useTodos();
+	const { todos, isLoading, fetchTodos, ref, ref2, isError } = useTodos();
 
 	const incompleteTodos = todos?.filter(todo => !todo.isCompleted);
 	const completedTodos = todos?.filter(todo => todo.isCompleted);
@@ -20,7 +20,9 @@ export default function List() {
 			<div className="grid grid-cols-1 gap-[48px] desktop:grid-cols-2 desktop:gap-[24px]">
 				<section>
 					<Image src={todo} alt={"todo"} />
-					{isLoading ? (
+					{isError ? (
+						<span>데이터를 불러오는 중 문제가 발생했습니다.</span>
+					) : isLoading ? (
 						<Loading />
 					) : (
 						<TodoList todos={incompleteTodos} refetchTodos={fetchTodos} />
@@ -29,7 +31,9 @@ export default function List() {
 				</section>
 				<section>
 					<Image src={done} alt={"done"} />
-					{isLoading ? (
+					{isError ? (
+						<span>데이터를 불러오는 중 문제가 발생했습니다.</span>
+					) : isLoading ? (
 						<Loading />
 					) : (
 						<TodoList

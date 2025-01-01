@@ -11,21 +11,25 @@ export default function useTodos() {
 	const { ref, inView } = useInView({ threshold: 0.5 });
 	const { ref: ref2, inView: inView2 } = useInView({ threshold: 0.5 });
 	const [isLoading2, setIsLoading2] = useState(false);
+	const [isError, setIsError] = useState(false);
 
 	useEffect(() => {
 		if (page === 1) {
 			async function fetchInitialTodos() {
-				const initialTodos = await getItems(1);
-				setTodos(initialTodos);
-				setHasMore(initialTodos.length === 10);
-				setPage(page + 1);
-				setIsLoading(false);
+				try {
+					const initialTodos = await getItems(1);
+					setTodos(initialTodos);
+					setHasMore(initialTodos.length === 10);
+					setPage(page + 1);
+					setIsLoading(false);
+				} catch {
+					setIsError(true);
+				}
 			}
 			fetchInitialTodos();
 		}
 	}, []);
 	useEffect(() => {
-		console.log(hasMore, inView, page, todos, inView2, isLoading2);
 		if (
 			(page !== 1 && inView && hasMore && !isLoading2) ||
 			(page !== 1 && inView2 && hasMore && !isLoading2)
@@ -49,5 +53,5 @@ export default function useTodos() {
 		setTodos(data);
 	};
 
-	return { todos, isLoading, fetchTodos, ref, ref2 };
+	return { todos, isLoading, fetchTodos, ref, ref2, isError };
 }
