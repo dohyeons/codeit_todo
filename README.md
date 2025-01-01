@@ -6,6 +6,7 @@
 
 <b> 코드잇 프론트엔드 단기심화 과정 지원자 과제 </b>
 
+<br />
 
 ## 사용 기술
 
@@ -13,7 +14,13 @@ Next.js(ts), TailiwndCSS, react-intersection-observer
 
 <br />
 
+## 배포 주소(Vercel)
+https://codeit-todo-theta.vercel.app/
+
+<br />
+
 </div>
+
 
 ## 📌 과제 진행 내역
 
