@@ -6,14 +6,15 @@ import { useRouter } from "next/navigation";
 export default function TodoList({
 	todos,
 	refetchTodos,
+	isCompleted,
 }: {
 	todos: TodoListType[] | undefined;
 	refetchTodos: () => void;
+	isCompleted?: true;
 }) {
 	const router = useRouter();
 
 	function handleTodoClick(e: React.MouseEvent<HTMLLIElement>, id: number) {
-		e.stopPropagation();
 		router.push(`/items/${id}`);
 	}
 
@@ -45,7 +46,7 @@ export default function TodoList({
 					))}
 				</ul>
 			) : (
-				<EmptyList />
+				<EmptyList isCompleted={!!isCompleted} />
 			)}
 		</>
 	);

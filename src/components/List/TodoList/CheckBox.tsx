@@ -16,7 +16,8 @@ export default function CheckBox({
 	activeToggle?: boolean;
 	customFunction: () => void;
 }) {
-	async function handleCheckBoxClick() {
+	async function handleCheckBoxClick(e: React.MouseEvent<HTMLButtonElement>) {
+		e.stopPropagation();
 		if (activeToggle) {
 			await toggleComplete(isDone, id);
 		}
