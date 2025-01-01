@@ -21,8 +21,12 @@ export default function DetailImage({
 		) {
 			return;
 		}
-		const res = await postImage(file);
-		onImageChange(res.url);
+		try {
+			const res = await postImage(file);
+			onImageChange(res.url);
+		} catch {
+			window.alert("이미지 업로드에 실패했습니다.");
+		}
 	}
 	return (
 		<article
