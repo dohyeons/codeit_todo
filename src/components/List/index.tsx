@@ -21,7 +21,7 @@ export default function List() {
 					<Image src={todo} alt={"todo"} />
 					{isLoading ? (
 						<div className="w-full mt-[16px]">
-							<span>데이터를 불러오고 있습니다...!</span>
+							<span>데이터를 불러오고 있습니다.</span>
 						</div>
 					) : (
 						<TodoList todos={incompleteTodos} refetchTodos={fetchTodos} />
@@ -32,10 +32,14 @@ export default function List() {
 					<Image src={done} alt={"done"} />
 					{isLoading ? (
 						<div className="w-full mt-[16px]">
-							<span>데이터를 불러오고 있습니다...!</span>
+							<span>데이터를 불러오고 있습니다.</span>
 						</div>
 					) : (
-						<TodoList todos={completedTodos} refetchTodos={fetchTodos} />
+						<TodoList
+							todos={completedTodos}
+							refetchTodos={fetchTodos}
+							isCompleted
+						/>
 					)}
 					<div ref={ref2} className="w-full h-[60px]"></div>
 				</section>
