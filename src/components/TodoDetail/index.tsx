@@ -25,8 +25,12 @@ export default function TodoDetail({
 	const router = useRouter();
 
 	async function onClickDeleteButton() {
-		await deleteTodo(todoDetail.id);
-		router.push("/");
+		try {
+			await deleteTodo(todoDetail.id);
+			router.push("/");
+		} catch {
+			window.alert("삭제 요청이 실패했습니다.");
+		}
 	}
 	async function onClickCompleteButton() {
 		await updateDetail(todoDetail.id, todoDetail);
