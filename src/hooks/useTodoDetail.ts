@@ -17,6 +17,9 @@ export default function useTodoDetail(initialDetail: TodoDetailType) {
 			if (obj1[key] === null) {
 				return obj2[key] !== "";
 			}
+			if (key === "name" && obj2[key] === "") {
+				return false;
+			}
 			return obj1[key] !== obj2[key];
 		});
 	}
