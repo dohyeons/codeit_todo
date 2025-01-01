@@ -1,4 +1,5 @@
 import CheckBox from "@/components/List/TodoList/CheckBox";
+import DetailInput from "@/components/TodoDetail/DetailHeader/DetailInput";
 import { TodoListDetailType } from "@/types";
 
 export default function DetailHeader({
@@ -22,11 +23,9 @@ export default function DetailHeader({
 				customFunction={changeCompleteStatus}
 				activeToggle={false}
 			/>
-			<input
-				className="text-large bg-transparent underline decoration-1 underline-offset-2"
-				type="text"
-				value={todoDetail.name}
-				onChange={handleMemoNameChange}
+			<DetailInput
+				name={todoDetail.name}
+				handleMemoNameChange={handleMemoNameChange}
 			/>
 		</div>
 	);
