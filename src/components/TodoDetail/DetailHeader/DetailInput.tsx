@@ -11,8 +11,7 @@ export default function DetailInput({
 	const unit = 18;
 
 	function resize() {
-		const newWidth = (name.length + 1) * unit;
-		console.log(newWidth);
+		const newWidth = (name?.length + 1) * unit;
 		setInputWidth(newWidth);
 	}
 
