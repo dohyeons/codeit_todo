@@ -17,9 +17,6 @@ export default function useTodoDetail(initialDetail: TodoDetailType) {
 			if (obj1[key] === null) {
 				return obj2[key] !== "";
 			}
-			if (key === "name" && obj2[key] === "") {
-				return false;
-			}
 			return obj1[key] !== obj2[key];
 		});
 	}
@@ -45,6 +42,9 @@ export default function useTodoDetail(initialDetail: TodoDetailType) {
 	// todoDetail이 바뀌었을 경우 바뀐 부분을 확인해 현재 상세정보를 변경 상태를 바꿈.
 	useEffect(() => {
 		setIsTodoDetailChanging(isChanged(initialDetail, todoDetail));
+		if (todoDetail.name === "") {
+			setIsTodoDetailChanging(false);
+		}
 	}, [initialDetail, todoDetail]);
 
 	return {
