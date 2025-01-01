@@ -1,15 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "../../public/image/logo.svg";
 import logo_doit from "../../public/image/logo_doit.svg";
 export default function Header() {
-	const router = useRouter();
-
 	const handleLogoClick = () => {
-		router.push("/");
-		router.refresh();
+		window.location.href = "/";
 	};
 	return (
 		<header className="border absolute top-0 w-full border-b-primary-200 bg-white">
