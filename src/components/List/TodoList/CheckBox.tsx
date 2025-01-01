@@ -18,10 +18,14 @@ export default function CheckBox({
 }) {
 	async function handleCheckBoxClick(e: React.MouseEvent<HTMLButtonElement>) {
 		e.stopPropagation();
-		if (activeToggle) {
-			await toggleComplete(isDone, id);
+		try {
+			if (activeToggle) {
+				await toggleComplete(isDone, id);
+			}
+			customFunction();
+		} catch {
+			window.alert("상태 변경 요청이 실패했습니다.");
 		}
-		customFunction();
 	}
 
 	return (
